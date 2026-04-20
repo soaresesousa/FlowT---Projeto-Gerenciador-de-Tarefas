@@ -14,14 +14,12 @@ const Header: React.FunctionComponent = () => {
         <a href="#">Todas <span>8</span></a>
         <a href="#">Concluídas <span>5</span></a>
         <a href="#">pendentes <span>3</span></a>
-        <input type="text" placeholder='Busque por título...' />
-        <BsSearch />
+        
     </nav>
+    
     <div className="right-header">
-      <select name="filter" id="filter">
-          <option value="prioridade">Prioridade</option>
-          <option value="date">Data</option>
-      </select>
+      <input type="text" placeholder='Busque por título...' />
+        <BsSearch />
       <button onClick={toggleTheme} >{theme == "dark" ? <BsSun /> : <BsMoon />}</button>
     </div>
   </div>;

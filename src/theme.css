@@ -1,0 +1,16 @@
+:root {
+    --bg-color:#fff;
+    --text-color:#080C17;
+    --shadow-color:#0000006d;
+    --l-opacity-color:#99A1AF;
+}
+
+[data-theme='dark'] {
+    --bg-color: #080c17;
+    --text-color:#fff;
+    --shadow-color:#1d1b1b5a;
+}
+
+body {
+    transition:background-color .3s ease, color 0.3 ease;
+}
