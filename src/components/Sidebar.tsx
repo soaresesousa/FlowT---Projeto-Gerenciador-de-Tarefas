@@ -2,10 +2,15 @@ import React from 'react';
 
 import '../styles/sidebar.css'
 
-const Sidebar: React.FunctionComponent = () => {
+interface Props {
+  toggleModalOpen: () => void;
+}
+
+const Sidebar: React.FunctionComponent<Props> = ({toggleModalOpen}: Props) => {
+  
   return (
     <aside>
-        <button>Adicionar task</button>
+        <button onClick={toggleModalOpen} >Adicionar task</button>
         <select name="" id="">
             <option value="">Prioridade</option>
             <option value="">prazo</option>
