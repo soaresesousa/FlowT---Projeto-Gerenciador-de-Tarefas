@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar";
 import TaskList from "./components/TaskList";
 
 import "./styles/App.css"
+import Form from "./components/Form";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <div className="mainContent">
         <Sidebar />
         <TaskList />
+        <Form />
       </div>
       <Footer />
     </div>
