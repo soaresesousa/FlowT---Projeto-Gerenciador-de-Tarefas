@@ -1,10 +1,18 @@
 import React from 'react';
 
-interface IAppProps {
-}
+import '../styles/sidebar.css'
 
-const App: React.FunctionComponent<IAppProps> = (props) => {
-  return ;
+const Sidebar: React.FunctionComponent = () => {
+  return (
+    <aside>
+        <button>Adicionar task</button>
+        <select name="" id="">
+            <option value="">Prioridade</option>
+            <option value="">prazo</option>
+            <option value="">dificuldade</option>
+        </select>
+    </aside>
+  );
 };
 
-export default App;
+export default Sidebar;
