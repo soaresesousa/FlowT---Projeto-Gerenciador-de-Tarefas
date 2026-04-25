@@ -7,12 +7,11 @@ import TaskList from "./components/TaskList";
 
 import "./styles/App.css"
 import Form from "./components/Form";
-import type { ITask, TaskStatus } from './types';
+import type { ITask } from './types';
 
 function App() {
 
   const [taskList, setTaskList] = useState<ITask[]>([]);
-    const [status, setStatus] = useState<TaskStatus>('TODO');
   
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -25,15 +24,19 @@ function App() {
     setTaskList([...taskList, task])
     toggleModalOpen();
   }
+
+  const deleteTask = (id: string) => {
+    const updatedList: ITask[] = taskList.filter((task) => task.id !== id); 
+    setTaskList(updatedList);
+  }
   
   return (
     <div>
       <Header />
       <div className="mainContent">
         <Sidebar toggleModalOpen={toggleModalOpen} />
-        <TaskList taskList={taskList} />
+        <TaskList deleteTask={deleteTask} taskList={taskList} />
         {isModalOpen && <Form 
-        status={status}
         toggleModalOpen={toggleModalOpen} 
         addNewTask={addNewTask}
         />}

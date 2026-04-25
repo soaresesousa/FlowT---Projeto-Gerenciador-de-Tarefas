@@ -7,15 +7,14 @@ import {BsX} from 'react-icons/bs'
 interface Props {
   toggleModalOpen: () => void;
   addNewTask: (task: ITask) => void;
-  status: TaskStatus;
 }
 
-const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, status}: Props) => {
+const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask}: Props) => {
 
   const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string | null>(null);
+  const [description, setDescription] = useState<string>('');
   const [priority, setPriority] = useState<TaskPriority>('MEDIUM');
-  const [dueDate, setDueDate] = useState<string | null>(null);
+  const [dueDate, setDueDate] = useState<string>('');
 
   const handleField = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const fieldName = e.target.name;
@@ -44,15 +43,16 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, stat
     return crypto.randomUUID();
   }
 
-  const createTask = () => {
+  const createTask = (e: React.SubmitEvent) => {
+    e.preventDefault()
     const taskToAdd: ITask = {
-      title,
+      title: title.trim(),
       id: generateId(),
       createdAt: new Date().toISOString(),
       priority,
-      status,
-      dueDate: dueDate ? dueDate : undefined,
-      description: description ? description : undefined
+      status: 'TODO',
+      dueDate: dueDate || undefined,
+      description: description.trim() || undefined
     }
     addNewTask(taskToAdd);
   }
@@ -64,7 +64,7 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, stat
     <form action="" onSubmit={createTask}>
         <div className="form-header">
           <h2>Nova Task</h2>
-          <button onClick={toggleModalOpen} className='closeModalBtn'>
+          <button type='button' onClick={toggleModalOpen} className='closeModalBtn'>
             <BsX />
           </button>
         </div>

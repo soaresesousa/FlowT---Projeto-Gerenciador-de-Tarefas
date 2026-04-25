@@ -1,0 +1,15 @@
+[33m0320861[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Feature/metodo de adicionar tasks funcionando, sem persistencia e formatacao ainda
+[33m49f6ac8[m Layout/adicionado component de formulario
+[33mada89a2[m Design/Adicionados alguns estilos de conteudo principal
+[33m65fbe33[m Layout/adicionado o footer
+[33m5bf7a8c[m Design/adicionado botão de troca de tema light/dark
+[33me641041[m Del/ arquivo deletado de css
+[33m5f84b98[m Mod/ reset padrao do arquivo de css principal
+[33m5023457[m pastas padrao criadas
+[33m799cc0b[m primeiro component inserido
+[33m7910efa[m Del/deleção de alguns pacotes
+[33mf9a78f4[m Mod/interface task e demais tipos criados
+[33mc00951f[m Mod/instalação do tailwind nos arquivos de configuração
+[33m2ac507b[m Mod/arquivo vite.config para aceitar o tailwindcss
+[33m0ad51b8[m Deleção de alguns arquivos
+[33m360b43e[m Arquivos iniciais do projeto
