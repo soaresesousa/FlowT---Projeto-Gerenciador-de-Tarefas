@@ -2,7 +2,7 @@ import React from 'react';
 
 import "../styles/TaskList.css"
 import type { ITask } from '../types';
-import { BsTrash } from 'react-icons/bs';
+import { BsTrash, BsPencil } from 'react-icons/bs';
 
 interface Props {
   taskList: ITask[];
@@ -27,6 +27,7 @@ const TaskList: React.FunctionComponent<Props> = ({taskList, deleteTask}: Props)
           <p>Prioridade: {task.priority}</p>
           <p>{task.dueDate ? `Prazo de entrega: ${task.dueDate}` : ''}</p>
           <button onClick={() => deleteTask(task.id)} className='deleteBtn'><BsTrash /></button>
+          <button className='editBtn'><BsPencil /></button>
         </div>
       ))}   
     </div>

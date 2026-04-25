@@ -45,6 +45,10 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask}: Pro
 
   const createTask = (e: React.SubmitEvent) => {
     e.preventDefault()
+    if(!title.trim()){
+      alert('Preencha os campos obrigatórios')
+      return;
+    }
     const taskToAdd: ITask = {
       title: title.trim(),
       id: generateId(),

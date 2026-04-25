@@ -26,6 +26,8 @@ function App() {
   }
 
   const deleteTask = (id: string) => {
+    const confirmacao = window.confirm("Tem certeza que deseja excluir essa tarefa?");
+    if(!confirmacao) return;
     const updatedList: ITask[] = taskList.filter((task) => task.id !== id); 
     setTaskList(updatedList);
   }
