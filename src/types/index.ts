@@ -1,6 +1,6 @@
 export type TaskStatus = "TODO" | "DONE"
 
-export type TaskPriority = 'LOW' | 'MEDIUM' | 'HIGH'
+export type TaskPriority = 'Baixa' | 'Média' | 'Alta'
 
 export interface ITask {
     status: TaskStatus,

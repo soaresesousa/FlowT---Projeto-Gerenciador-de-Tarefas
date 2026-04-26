@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import type { ITask, TaskPriority, TaskStatus,  } from '../types';
 import "../styles/Form.css"
@@ -15,7 +15,7 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, task
   
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [priority, setPriority] = useState<TaskPriority>('MEDIUM');
+  const [priority, setPriority] = useState<TaskPriority>('Média');
   const [dueDate, setDueDate] = useState<string>('');
 
   const handleField = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -44,12 +44,21 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, task
     return crypto.randomUUID();
   }
 
+  useEffect(() => {
+    if(taskToUpdate){
+      setTitle(taskToUpdate.title);
+      if(taskToUpdate.dueDate)setDueDate(taskToUpdate.dueDate);
+      if(taskToUpdate.description) setDescription(taskToUpdate.description);
+      setPriority(taskToUpdate.priority);
+    }
+  }, [taskToUpdate])
+  
   const handleTask = (e: React.SubmitEvent) => {
     e.preventDefault()
 
     if(taskToUpdate) {
       
-    }
+    }  
     
     if(!title.trim()){
       alert('Preencha os campos obrigatórios')
@@ -83,23 +92,23 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, task
         </div>
         <div className="input-field">
           <label htmlFor="title">Título:</label>
-          <input type="text" name='title' onChange={handleField} />
+          <input value={title} type="text" name='title' onChange={handleField} />
         </div>
         <div className="input-field">
           <label htmlFor="description">Descrição <span>(opcional)</span></label>
-          <textarea name="description" onChange={handleField}></textarea>
+          <textarea value={description} name="description" onChange={handleField}></textarea>
         </div>
         <div className="input-field">
           <label htmlFor="priority">Prioridade:</label>
           <select name="priority" onChange={handleField}>
-              <option>Média</option>
-              <option>Baixa</option>
-              <option>Alta</option>
+              <option value={priority} >Média</option>
+              <option value={priority}>Baixa</option>
+              <option value={priority} >Alta</option>
           </select>
         </div>
         <div className="input-field">
           <label htmlFor="dueDate">Prazo de entrega <span>(opcional)</span></label>
-          <input name='dueDate' type="date" onChange={handleField} />
+          <input value={dueDate} name='dueDate' type="date" onChange={handleField} />
         </div>
         <button type='submit' className='addTaskBtn'>{taskToUpdate ? "Salvar" : "Criar Task" }</button>
     </form>
