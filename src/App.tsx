@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
 import TaskList from "./components/TaskList";
+import EditModal from './components/EditModal'
 
 import "./styles/App.css"
 import Form from "./components/Form";
@@ -12,7 +13,7 @@ import type { ITask } from './types';
 function App() {
 
   const [taskList, setTaskList] = useState<ITask[]>([]);
-  
+  const [taskToUpdate, setTaskToUpdate] = useState<ITask | undefined>(undefined);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   
@@ -31,17 +32,32 @@ function App() {
     const updatedList: ITask[] = taskList.filter((task) => task.id !== id); 
     setTaskList(updatedList);
   }
+
+  const editTask = (task: ITask) => {
+
+  }
   
   return (
     <div>
       <Header />
       <div className="mainContent">
-        <Sidebar toggleModalOpen={toggleModalOpen} />
-        <TaskList deleteTask={deleteTask} taskList={taskList} />
-        {isModalOpen && <Form 
+
+        <Sidebar 
+        toggleModalOpen={toggleModalOpen} />
+
+        <TaskList 
+        toggleModalOpen={toggleModalOpen}
+        deleteTask={deleteTask} 
+        setTaskToUpdate={setTaskToUpdate}
+        taskList={taskList} />
+        
+        {isModalOpen && taskToUpdate == undefined &&<Form
+        setTaskToUpdate={setTaskToUpdate}
+        taskToUpdate={taskToUpdate} 
         toggleModalOpen={toggleModalOpen} 
         addNewTask={addNewTask}
         />}
+        {taskToUpdate && isModalOpen && <EditModal><Form setTaskToUpdate={setTaskToUpdate}taskToUpdate={taskToUpdate} toggleModalOpen={toggleModalOpen} /></EditModal>}
       </div>
       <Footer />
     </div>

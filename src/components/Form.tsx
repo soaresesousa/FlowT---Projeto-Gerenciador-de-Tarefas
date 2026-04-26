@@ -6,11 +6,13 @@ import {BsX} from 'react-icons/bs'
 
 interface Props {
   toggleModalOpen: () => void;
-  addNewTask: (task: ITask) => void;
+  addNewTask?: (task: ITask) => void;
+  taskToUpdate: ITask | undefined;
+  setTaskToUpdate: React.Dispatch<React.SetStateAction<ITask | undefined>>
 }
 
-const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask}: Props) => {
-
+const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, taskToUpdate, setTaskToUpdate}: Props) => {
+  
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [priority, setPriority] = useState<TaskPriority>('MEDIUM');
@@ -18,7 +20,6 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask}: Pro
 
   const handleField = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const fieldName = e.target.name;
-    console.log( fieldName)
     switch (fieldName) {
       case 'title':
         setTitle(e.target.value)
@@ -43,8 +44,13 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask}: Pro
     return crypto.randomUUID();
   }
 
-  const createTask = (e: React.SubmitEvent) => {
+  const handleTask = (e: React.SubmitEvent) => {
     e.preventDefault()
+
+    if(taskToUpdate) {
+      
+    }
+    
     if(!title.trim()){
       alert('Preencha os campos obrigatórios')
       return;
@@ -58,17 +64,20 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask}: Pro
       dueDate: dueDate || undefined,
       description: description.trim() || undefined
     }
-    addNewTask(taskToAdd);
+    if(addNewTask) addNewTask(taskToAdd);
   }
   
 
   return (
     <div className="form-div">
       <div className="overlay"></div>
-    <form action="" onSubmit={createTask}>
+    <form action="" onSubmit={handleTask}>
         <div className="form-header">
-          <h2>Nova Task</h2>
-          <button type='button' onClick={toggleModalOpen} className='closeModalBtn'>
+          <h2>{taskToUpdate ? "Editar" : "Nova Task"}</h2>
+          <button type='button' onClick={() => {
+            toggleModalOpen()
+            if(taskToUpdate)setTaskToUpdate(undefined)
+            }} className='closeModalBtn'>
             <BsX />
           </button>
         </div>
@@ -83,16 +92,16 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask}: Pro
         <div className="input-field">
           <label htmlFor="priority">Prioridade:</label>
           <select name="priority" onChange={handleField}>
-              <option value="MEDIUM">Média</option>
-              <option value="LOW">Baixa</option>
-              <option value="HIGH">Alta</option>
+              <option>Média</option>
+              <option>Baixa</option>
+              <option>Alta</option>
           </select>
         </div>
         <div className="input-field">
           <label htmlFor="dueDate">Prazo de entrega <span>(opcional)</span></label>
           <input name='dueDate' type="date" onChange={handleField} />
         </div>
-        <button type='submit' className='addTaskBtn'>Criar Task</button>
+        <button type='submit' className='addTaskBtn'>{taskToUpdate ? "Salvar" : "Criar Task" }</button>
     </form>
     </div>
   );
