@@ -54,7 +54,12 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, task
     e.preventDefault()
 
     if(taskToUpdate) {
-      const editedTask = {title, description, dueDate, priority,}
+      const editedTask = {
+        title, 
+        description: description.trim() || undefined,
+        dueDate: dueDate || undefined,
+        priority,
+      }
       if(editTask) editTask({...editedTask,createdAt: taskToUpdate.createdAt, id: taskToUpdate.id, status: taskToUpdate.status});
       setTaskToUpdate(undefined)
       return;

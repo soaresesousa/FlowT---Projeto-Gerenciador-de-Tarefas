@@ -34,9 +34,10 @@ function App() {
   }
 
   const editTask = (task: ITask) => {
-    setTaskList(taskList.map((taskUnit) => {
+    /* setTaskList(taskList.map((taskUnit) => {
       return taskUnit.id == task.id ? task : taskUnit
-    }));
+    })); */
+    setTaskList((prev) => (taskList.map((taskUnit) => taskUnit.id == task.id ? task : taskUnit)))
     toggleModalOpen()
   }
   
