@@ -34,7 +34,10 @@ function App() {
   }
 
   const editTask = (task: ITask) => {
-
+    setTaskList(taskList.map((taskUnit) => {
+      return taskUnit.id == task.id ? task : taskUnit
+    }));
+    toggleModalOpen()
   }
   
   return (
@@ -57,7 +60,7 @@ function App() {
         toggleModalOpen={toggleModalOpen} 
         addNewTask={addNewTask}
         />}
-        {taskToUpdate && isModalOpen && <EditModal><Form setTaskToUpdate={setTaskToUpdate}taskToUpdate={taskToUpdate} toggleModalOpen={toggleModalOpen} /></EditModal>}
+        {taskToUpdate && isModalOpen && <EditModal><Form editTask={editTask} setTaskToUpdate={setTaskToUpdate}taskToUpdate={taskToUpdate} toggleModalOpen={toggleModalOpen} /></EditModal>}
       </div>
       <Footer />
     </div>

@@ -9,9 +9,10 @@ interface Props {
   addNewTask?: (task: ITask) => void;
   taskToUpdate: ITask | undefined;
   setTaskToUpdate: React.Dispatch<React.SetStateAction<ITask | undefined>>
+  editTask?: (task: ITask) => void;
 }
 
-const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, taskToUpdate, setTaskToUpdate}: Props) => {
+const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, taskToUpdate, setTaskToUpdate, editTask}: Props) => {
   
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -23,19 +24,15 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, task
     switch (fieldName) {
       case 'title':
         setTitle(e.target.value)
-        console.log(title)
         break
       case 'description':
         setDescription(e.target.value)
-        console.log(description)
         break
       case 'dueDate':
         setDueDate(e.target.value)
-        console.log(dueDate)
         break
       case 'priority':
         setPriority((e.target.value) as TaskPriority)
-        console.log(priority)
         break
     }
   }
@@ -57,7 +54,10 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, task
     e.preventDefault()
 
     if(taskToUpdate) {
-      
+      const editedTask = {title, description, dueDate, priority,}
+      if(editTask) editTask({...editedTask,createdAt: taskToUpdate.createdAt, id: taskToUpdate.id, status: taskToUpdate.status});
+      setTaskToUpdate(undefined)
+      return;
     }  
     
     if(!title.trim()){
@@ -101,9 +101,10 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, task
         <div className="input-field">
           <label htmlFor="priority">Prioridade:</label>
           <select name="priority" onChange={handleField}>
-              <option value={priority} >Média</option>
-              <option value={priority}>Baixa</option>
-              <option value={priority} >Alta</option>
+            <option disabled selected value={taskToUpdate ? taskToUpdate.priority : ''}>Escolha uma prioridade</option>
+              <option value={"Média"} >Média</option>
+              <option value={"Baixa"}>Baixa</option>
+              <option value={'Alta'} >Alta</option>
           </select>
         </div>
         <div className="input-field">
