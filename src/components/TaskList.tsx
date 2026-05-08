@@ -9,9 +9,10 @@ interface Props {
   deleteTask: (id: string) => void;
   setTaskToUpdate: React.Dispatch<SetStateAction<ITask | undefined>>
   toggleModalOpen: () => void;
+  handleStatus: (id: string) => void;
 }
 
-const TaskList: React.FunctionComponent<Props> = ({taskList, deleteTask, setTaskToUpdate, toggleModalOpen}: Props) => {
+const TaskList: React.FunctionComponent<Props> = ({taskList, deleteTask, setTaskToUpdate, toggleModalOpen, handleStatus}: Props) => {
 
   if(taskList.length == 0) {
     return (
@@ -23,7 +24,7 @@ const TaskList: React.FunctionComponent<Props> = ({taskList, deleteTask, setTask
   return (
     <div className='taskList'>
       {taskList.map((task) => (
-        <div className="task" key={task.id} >
+        <div className={`task ${task.status == "DONE" ? 'done' : ''}`} key={task.id} >
           <p>{task.title}</p>
           <p className="description">{task.description ? `Descrição: ${task.description}` : ''}</p>
           <p>Prioridade: {task.priority}</p>
@@ -33,6 +34,7 @@ const TaskList: React.FunctionComponent<Props> = ({taskList, deleteTask, setTask
             setTaskToUpdate(task)
             toggleModalOpen()
             }} ><BsPencil /></button>
+            <input onChange={() => handleStatus(task.id)} type="checkbox" name="" id="" />
         </div>
       ))}   
     </div>

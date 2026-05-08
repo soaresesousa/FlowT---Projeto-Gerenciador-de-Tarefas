@@ -1,3 +1,5 @@
 .taskList {
     min-height: 80vh;
 }
+
+.done {text-decoration: line-through;}

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-import type { ITask, TaskPriority, TaskStatus,  } from '../types';
+import type { ITask, TaskPriority  } from '../types';
 import "../styles/Form.css"
 import {BsX} from 'react-icons/bs'
 

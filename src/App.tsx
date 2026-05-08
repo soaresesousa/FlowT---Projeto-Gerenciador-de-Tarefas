@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
 import TaskList from "./components/TaskList";
-import EditModal from './components/EditModal'
 
 import "./styles/App.css"
 import Form from "./components/Form";
@@ -37,8 +36,20 @@ function App() {
     /* setTaskList(taskList.map((taskUnit) => {
       return taskUnit.id == task.id ? task : taskUnit
     })); */
-    setTaskList((prev) => (taskList.map((taskUnit) => taskUnit.id == task.id ? task : taskUnit)))
+    setTaskList((prev) => (prev.map((taskUnit) => taskUnit.id == task.id ? task : taskUnit)))
     toggleModalOpen()
+  }
+
+  const handleStatus = (id: string) => {
+    setTaskList((prev) => {
+      return prev.map((task) => {
+        if(task.id !== id) return task; 
+        return {
+          ...task,
+          status: status == "DONE" ? "TODO" : "DONE"
+        }
+      })
+    })
   }
   
   return (
@@ -53,7 +64,9 @@ function App() {
         toggleModalOpen={toggleModalOpen}
         deleteTask={deleteTask} 
         setTaskToUpdate={setTaskToUpdate}
-        taskList={taskList} />
+        taskList={taskList} 
+        handleStatus={handleStatus}
+        />
         
         {isModalOpen && taskToUpdate == undefined &&<Form
         setTaskToUpdate={setTaskToUpdate}
@@ -61,7 +74,7 @@ function App() {
         toggleModalOpen={toggleModalOpen} 
         addNewTask={addNewTask}
         />}
-        {taskToUpdate && isModalOpen && <EditModal><Form editTask={editTask} setTaskToUpdate={setTaskToUpdate}taskToUpdate={taskToUpdate} toggleModalOpen={toggleModalOpen} /></EditModal>}
+        {taskToUpdate && isModalOpen && <Form editTask={editTask} setTaskToUpdate={setTaskToUpdate}taskToUpdate={taskToUpdate} toggleModalOpen={toggleModalOpen} />}
       </div>
       <Footer />
     </div>
