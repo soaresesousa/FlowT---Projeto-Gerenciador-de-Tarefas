@@ -3,3 +3,19 @@
 }
 
 .done {text-decoration: line-through;}
+
+.priority-baixa p.taskPriority {
+    color: green;
+}
+
+.priority-média p.taskPriority {
+    color: yellow;
+}
+
+.priority-alta p.taskPriority {
+    color: red;
+}
+
+.overDue {
+    background:red;
+}

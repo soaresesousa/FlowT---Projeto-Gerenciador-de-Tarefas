@@ -46,7 +46,7 @@ function App() {
         if(task.id !== id) return task; 
         return {
           ...task,
-          status: status == "DONE" ? "TODO" : "DONE"
+          status: task.status == "DONE" ? "TODO" : "DONE"
         }
       })
     })

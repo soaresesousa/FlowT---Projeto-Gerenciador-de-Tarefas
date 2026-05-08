@@ -79,6 +79,10 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, task
       description: description.trim() || undefined
     }
     if(addNewTask) addNewTask(taskToAdd);
+    setTitle('');
+    setDescription('');
+    setDueDate('');
+    setPriority('Média');
   }
   
 
@@ -89,7 +93,7 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, task
         <div className="form-header">
           <h2>{taskToUpdate ? "Editar" : "Nova Task"}</h2>
           <button type='button' onClick={() => {
-            toggleModalOpen()
+            toggleModalOpen() 
             if(taskToUpdate)setTaskToUpdate(undefined)
             }} className='closeModalBtn'>
             <BsX />
@@ -105,11 +109,10 @@ const Form: React.FunctionComponent<Props> = ({toggleModalOpen, addNewTask, task
         </div>
         <div className="input-field">
           <label htmlFor="priority">Prioridade:</label>
-          <select name="priority" onChange={handleField}>
-            <option disabled selected value={taskToUpdate ? taskToUpdate.priority : ''}>Escolha uma prioridade</option>
-              <option value={"Média"} >Média</option>
-              <option value={"Baixa"}>Baixa</option>
-              <option value={'Alta'} >Alta</option>
+          <select name="priority" value={priority} onChange={handleField}>
+              <option value="Média" >Média</option>
+              <option value="Baixa">Baixa</option>
+              <option value='Alta' >Alta</option>
           </select>
         </div>
         <div className="input-field">
