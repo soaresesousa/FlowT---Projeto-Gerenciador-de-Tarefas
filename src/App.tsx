@@ -7,15 +7,16 @@ import TaskList from "./components/TaskList";
 
 import "./styles/App.css"
 import Form from "./components/Form";
-import type { ITask, /* TaskStatus, TaskPriority */ } from './types';
+import type { ITask, TaskStatus, TaskPriority  } from './types';
 
 function App() {
 
   const [taskList, setTaskList] = useState<ITask[]>([]);
   const [taskToUpdate, setTaskToUpdate] = useState<ITask | undefined>(undefined);
 
-  /* const [filterStatus, setFilterStatus] = useState<TaskStatus | "ALL">("ALL")
-  const [filterPriority, setFilterPriority] = useState<TaskPriority | "ALL">("ALL") */
+  const [filterStatus, setFilterStatus] = useState<TaskStatus | 'All'>('All')
+  const [filterPriority, setFilterPriority] = useState<TaskPriority | 'All'>('All')
+  const [filterDueDate, setFilterDueDate] = useState<'Recentes' | 'Antigas' | "All">('All');
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   
@@ -60,9 +61,14 @@ function App() {
       <Header />
       <div className="mainContent">
 
-        <Sidebar 
+        <Sidebar
         toggleModalOpen={toggleModalOpen} 
-        
+        filterStatus={filterStatus}
+        setFilterStatus={setFilterStatus}
+        filterPriority={filterPriority}
+        setFilterPriority={setFilterPriority}
+        filterDueDate={filterDueDate}
+        setFilterDueDate={setFilterDueDate}
         />
 
         <TaskList 

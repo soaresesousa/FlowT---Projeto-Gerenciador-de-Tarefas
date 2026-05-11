@@ -1,12 +1,24 @@
 import React from 'react';
 
 import '../styles/sidebar.css'
+import type { TaskPriority, TaskStatus } from '../types';
 
 interface Props {
   toggleModalOpen: () => void;
+  filterStatus: TaskStatus | 'All';
+  setFilterStatus: (s: TaskStatus | 'All') => void;
+  filterPriority: TaskPriority | 'All';
+  setFilterPriority: (p: TaskPriority | 'All') => void;
+  filterDueDate: 'Recentes' | 'Antigas' | 'All';
+  setFilterDueDate: (d: 'Recentes' | 'Antigas' | 'All') => void;
 }
 
-const Sidebar: React.FunctionComponent<Props> = ({toggleModalOpen}: Props) => {
+const Sidebar: React.FunctionComponent<Props> = ({toggleModalOpen, filterDueDate, filterPriority,filterStatus,setFilterDueDate,setFilterPriority,setFilterStatus}: Props) => {
+  
+  const handleFilter = (e: React.MouseEvent<HTMLDivElement>) => {
+    /* setFilterStatus(status) */
+    console.log(e.target.value)
+  }
   
   return (
     <aside>
@@ -24,12 +36,12 @@ const Sidebar: React.FunctionComponent<Props> = ({toggleModalOpen}: Props) => {
               <button>Baixa</button>
             </div>
         </div>
-      <div className="filter-group">
+      <div className="filter-group" onClick={handleFilter}>
           <span className="status-filter">Status</span>
           <div className="filter-select status-select">
-            <button>Todas</button>
-            <button>Concluídas</button>
-            <button>A fazer</button>
+            <button value={'All'}>Todas</button>
+            <button value={'DONE'}>Concluídas</button>
+            <button value={'TODO'}>A fazer</button>
           </div>
       </div>
       <div className="filter-group">

@@ -2,6 +2,7 @@ aside {
     display: flex;
     flex-direction: column;
     max-width: 10%;
+    margin-left: 10px;
 }
 
 .filters {
