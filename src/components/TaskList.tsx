@@ -35,7 +35,7 @@ const TaskList: React.FunctionComponent<Props> = ({taskList, deleteTask, setTask
           <p className='taskTitle'>{task.title}</p>
           <p className="description">{task.description ? `Descrição: ${task.description}` : ''}</p>
           <p className='taskPriority'>Prioridade: {task.priority}</p>
-          <p className='dueDate'>{task.dueDate ? `Prazo de entrega: ${task.dueDate}` : ''}</p>
+          <p className='dueDate'>{task.dueDate ? `Prazo de entrega: ${new Date(task.dueDate).toLocaleDateString()}` : ''}</p>
           <button onClick={() => deleteTask(task.id)} className='deleteBtn'><BsTrash /></button>
           <button className='editBtn' onClick={() => {
             setTaskToUpdate(task)

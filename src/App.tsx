@@ -7,12 +7,15 @@ import TaskList from "./components/TaskList";
 
 import "./styles/App.css"
 import Form from "./components/Form";
-import type { ITask } from './types';
+import type { ITask, /* TaskStatus, TaskPriority */ } from './types';
 
 function App() {
 
   const [taskList, setTaskList] = useState<ITask[]>([]);
   const [taskToUpdate, setTaskToUpdate] = useState<ITask | undefined>(undefined);
+
+  /* const [filterStatus, setFilterStatus] = useState<TaskStatus | "ALL">("ALL")
+  const [filterPriority, setFilterPriority] = useState<TaskPriority | "ALL">("ALL") */
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   
@@ -58,13 +61,15 @@ function App() {
       <div className="mainContent">
 
         <Sidebar 
-        toggleModalOpen={toggleModalOpen} />
+        toggleModalOpen={toggleModalOpen} 
+        
+        />
 
         <TaskList 
         toggleModalOpen={toggleModalOpen}
         deleteTask={deleteTask} 
         setTaskToUpdate={setTaskToUpdate}
-        taskList={taskList} 
+        taskList={/* filteredTasks !== "ALL" ? filteredTasks : */ taskList}
         handleStatus={handleStatus}
         />
         

@@ -3,3 +3,17 @@ aside {
     flex-direction: column;
     max-width: 10%;
 }
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filters .filter-select {
+    display: none;
+}
+
+.filters .filter-group:hover .filter-select {
+    display: block;
+}
