@@ -9,15 +9,23 @@ interface Props {
   setFilterStatus: (s: TaskStatus | 'All') => void;
   filterPriority: TaskPriority | 'All';
   setFilterPriority: (p: TaskPriority | 'All') => void;
-  filterDueDate: 'Recentes' | 'Antigas' | 'All';
-  setFilterDueDate: (d: 'Recentes' | 'Antigas' | 'All') => void;
 }
 
-const Sidebar: React.FunctionComponent<Props> = ({toggleModalOpen, filterDueDate, filterPriority,filterStatus,setFilterDueDate,setFilterPriority,setFilterStatus}: Props) => {
+const Sidebar: React.FunctionComponent<Props> = ({toggleModalOpen, filterPriority,filterStatus,setFilterPriority,setFilterStatus}: Props) => {
   
   const handleFilter = (e: React.MouseEvent<HTMLDivElement>) => {
-    /* setFilterStatus(status) */
-    console.log(e.target.value)
+    if(e.currentTarget.classList.contains('status-div')) {
+      setFilterStatus(e.target.value)
+      console.log(filterStatus)
+      return;
+    }
+    setFilterPriority(e.target.value);
+    console.log(filterPriority);
+  }
+  
+  const clearFilters = () => {
+    setFilterPriority('All');
+    setFilterStatus('All');
   }
   
   return (
@@ -25,18 +33,19 @@ const Sidebar: React.FunctionComponent<Props> = ({toggleModalOpen, filterDueDate
         <button onClick={toggleModalOpen} >Adicionar task</button>
       <div className="filters">
         <h3>Filtros: </h3>
-        <div className="filter-group">
-          <button className='All-filter'>Todas</button>
-        </div>
-        <div className="filter-group">
+        
+        <div className="filter-group" onClick={handleFilter}>
             <span className="priority-filter">Prioridade</span>
             <div className="filter-select priority-select">
-              <button>Alta</button>
-              <button>Média</button>
-              <button>Baixa</button>
+              <button value={'All'}>
+                Todas
+              </button>
+              <button value={'Alta'}>Alta</button>
+              <button value={'Média'}>Média</button>
+              <button value={'Baixa'}>Baixa</button>
             </div>
         </div>
-      <div className="filter-group" onClick={handleFilter}>
+      <div className="filter-group status-div" onClick={handleFilter}>
           <span className="status-filter">Status</span>
           <div className="filter-select status-select">
             <button value={'All'}>Todas</button>
@@ -45,12 +54,8 @@ const Sidebar: React.FunctionComponent<Props> = ({toggleModalOpen, filterDueDate
           </div>
       </div>
       <div className="filter-group">
-        <span className='dueDate-filter'>Prazo de entrega</span>
-        <div className="filter-select dueDate-select">
-          <button>Mais antigas</button>
-          <button>Mais recentes</button>
+          <button onClick={clearFilters} className='All-filter'>Limpar Filtros</button>
         </div>
-      </div>
       </div>
     </aside>
   );

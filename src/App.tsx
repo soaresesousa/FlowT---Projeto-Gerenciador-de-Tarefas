@@ -16,7 +16,9 @@ function App() {
 
   const [filterStatus, setFilterStatus] = useState<TaskStatus | 'All'>('All')
   const [filterPriority, setFilterPriority] = useState<TaskPriority | 'All'>('All')
-  const [filterDueDate, setFilterDueDate] = useState<'Recentes' | 'Antigas' | "All">('All');
+  /* 
+  Adicionar depois a ordenação por datas
+  const [filterDueDate, setFilterDueDate] = useState<'Recentes' | 'Antigas' | "All">('All'); */
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   
@@ -37,9 +39,6 @@ function App() {
   }
 
   const editTask = (task: ITask) => {
-    /* setTaskList(taskList.map((taskUnit) => {
-      return taskUnit.id == task.id ? task : taskUnit
-    })); */
     setTaskList((prev) => (prev.map((taskUnit) => taskUnit.id == task.id ? task : taskUnit)))
     toggleModalOpen()
   }
@@ -55,6 +54,10 @@ function App() {
       })
     })
   }
+
+  const filteredTasks = taskList
+  .filter((t) => filterStatus == 'All' || t.status == filterStatus)
+  .filter((t) => filterPriority == 'All' || t.priority == filterPriority);
   
   return (
     <div>
@@ -67,15 +70,14 @@ function App() {
         setFilterStatus={setFilterStatus}
         filterPriority={filterPriority}
         setFilterPriority={setFilterPriority}
-        filterDueDate={filterDueDate}
-        setFilterDueDate={setFilterDueDate}
         />
 
         <TaskList 
         toggleModalOpen={toggleModalOpen}
         deleteTask={deleteTask} 
         setTaskToUpdate={setTaskToUpdate}
-        taskList={/* filteredTasks !== "ALL" ? filteredTasks : */ taskList}
+        /* taskList={filteredTasks !== "ALL" ? filteredTasks : taskList} */
+        taskList={filteredTasks}
         handleStatus={handleStatus}
         />
         
