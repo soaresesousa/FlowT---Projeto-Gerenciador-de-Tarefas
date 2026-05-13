@@ -9,7 +9,7 @@ const Header: React.FunctionComponent = () => {
   const {theme, toggleTheme} = useTheme();
   
   return <div className='header'>
-    <h2 className='header-title'>FlowT</h2>
+    
     <nav className='header-nav'>
         <a href="#">Todas <span>8</span></a>
         <a href="#">Concluídas <span>5</span></a>

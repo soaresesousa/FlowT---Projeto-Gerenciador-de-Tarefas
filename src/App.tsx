@@ -60,10 +60,8 @@ function App() {
   .filter((t) => filterPriority == 'All' || t.priority == filterPriority);
   
   return (
-    <div>
-      <Header />
-      <div className="mainContent">
-
+    <div className='app'>
+      <div className="app-flex">
         <Sidebar
         toggleModalOpen={toggleModalOpen} 
         filterStatus={filterStatus}
@@ -71,6 +69,9 @@ function App() {
         filterPriority={filterPriority}
         setFilterPriority={setFilterPriority}
         />
+      <div className="mainContent">
+
+      <Header />
 
         <TaskList 
         toggleModalOpen={toggleModalOpen}
@@ -89,6 +90,8 @@ function App() {
         />}
         {taskToUpdate && isModalOpen && <Form editTask={editTask} setTaskToUpdate={setTaskToUpdate}taskToUpdate={taskToUpdate} toggleModalOpen={toggleModalOpen} />}
       </div>
+      </div>
+
       <Footer />
     </div>
   )

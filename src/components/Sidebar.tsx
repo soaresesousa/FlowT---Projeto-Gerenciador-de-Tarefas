@@ -30,6 +30,7 @@ const Sidebar: React.FunctionComponent<Props> = ({toggleModalOpen, filterPriorit
   
   return (
     <aside>
+      <h2 className='header-title'>FlowT</h2>
         <button onClick={toggleModalOpen} >Adicionar task</button>
       <div className="filters">
         <h3>Filtros: </h3>
