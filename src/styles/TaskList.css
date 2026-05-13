@@ -1,5 +1,10 @@
 .taskList {
     min-height: 80vh;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    
 }
 
 .done {text-decoration: line-through;}

@@ -7,6 +7,5 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 28px;
-    background:gray;
+    background:rgb(225, 225, 225);
 }

@@ -1,8 +1,8 @@
 aside {
     display: flex;
     flex-direction: column;
-    max-width: 10%;
-    margin-left: 10px;
+    width: 20%;
+    padding: 20px 1.5%;
 }
 
 .filters {
