@@ -77,7 +77,6 @@ function App() {
         toggleModalOpen={toggleModalOpen}
         deleteTask={deleteTask} 
         setTaskToUpdate={setTaskToUpdate}
-        /* taskList={filteredTasks !== "ALL" ? filteredTasks : taskList} */
         taskList={filteredTasks}
         handleStatus={handleStatus}
         />
@@ -89,10 +88,10 @@ function App() {
         addNewTask={addNewTask}
         />}
         {taskToUpdate && isModalOpen && <Form editTask={editTask} setTaskToUpdate={setTaskToUpdate}taskToUpdate={taskToUpdate} toggleModalOpen={toggleModalOpen} />}
+      <Footer />
       </div>
       </div>
 
-      <Footer />
     </div>
   )
 }

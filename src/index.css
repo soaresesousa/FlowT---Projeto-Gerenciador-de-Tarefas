@@ -5,4 +5,11 @@
     font-family: Helvetica;
 }
 
+:root {
+    --bg-color:#fff;
+    --text-color:#080C17;
+    --shadow-color:#0000006d;
+    --l-opacity-color:#7b8290;
+}
+
 a {text-decoration: none;}
