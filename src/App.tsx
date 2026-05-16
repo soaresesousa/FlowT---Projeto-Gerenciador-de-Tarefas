@@ -61,7 +61,6 @@ function App() {
   
   return (
     <div className='app'>
-      <div className="app-flex">
         <Sidebar
         toggleModalOpen={toggleModalOpen} 
         filterStatus={filterStatus}
@@ -89,7 +88,6 @@ function App() {
         />}
         {taskToUpdate && isModalOpen && <Form editTask={editTask} setTaskToUpdate={setTaskToUpdate}taskToUpdate={taskToUpdate} toggleModalOpen={toggleModalOpen} />}
       <Footer />
-      </div>
       </div>
 
     </div>
