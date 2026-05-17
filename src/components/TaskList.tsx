@@ -32,16 +32,22 @@ const TaskList: React.FunctionComponent<Props> = ({taskList, deleteTask, setTask
           ${isOverDueDate(task.dueDate) && task.status !== 'DONE' ? 'overDue' : '' } `} 
           key={task.id
         } >
-          <p className='taskTitle'>{task.title}</p>
-          <p className="description">{task.description ? `Descrição: ${task.description}` : ''}</p>
-          <p className='taskPriority'>Prioridade: {task.priority}</p>
-          <p className='dueDate'>{task.dueDate ? `Prazo de entrega: ${new Date(task.dueDate).toLocaleDateString()}` : ''}</p>
-          <button onClick={() => deleteTask(task.id)} className='deleteBtn'><BsTrash /></button>
-          <button className='editBtn' onClick={() => {
-            setTaskToUpdate(task)
-            toggleModalOpen()
-            }} ><BsPencil /></button>
-            <input onChange={() => handleStatus(task.id)} type="checkbox" name="" id="" />
+          <div className="top-task">
+            <p className='taskPriority'>{task.priority}</p>
+            <p className='dueDate'>{task.dueDate ? `Prazo: ${new Date(task.dueDate).toLocaleDateString('pt-Br')}` : ''}</p>
+          </div>
+          <div className="middle-task">
+            <p className='taskTitle'>{task.title}</p>
+            <p className="description">{task.description ? `${task.description}` : ''}</p>
+          </div>
+          <div className="bottom-task">  
+            <button onClick={() => deleteTask(task.id)} className='deleteBtn'><BsTrash /></button>
+            <button className='editBtn' onClick={() => {
+              setTaskToUpdate(task)
+              toggleModalOpen()
+              }} ><BsPencil /></button>
+              <input onChange={() => handleStatus(task.id)} type="checkbox" name="" id="" />
+          </div>
         </div>
       ))}   
     </div>
