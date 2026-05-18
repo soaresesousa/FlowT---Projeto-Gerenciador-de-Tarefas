@@ -12,7 +12,7 @@
     border-radius:15px;
     padding: 16px 14px;
     background: #fff;
-    min-height: 200px;
+    max-height: 200px;
     border: 1px solid #ececec;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     display: flex;
@@ -22,14 +22,11 @@
     word-wrap: break-word;
 }
 
-.task:hover {
-    transform: translateY(-2px);
-}
-
 .middle-task {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 45px;
 }
 
 .middle-task .taskTitle {
@@ -82,10 +79,50 @@
 }
 
 .overDue {
-    background:red;
+
 }
 
 .bottom-task {
     position: absolute;
     bottom: 10px;
+}
+
+.bottom-task .buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.bottom-task button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius:10px;
+    padding: 6px 8px;
+    font-weight: bold;
+    font-size:14px;
+    transition: all .3s ease;
+    background: #fff;
+}
+
+.bottom-task .deleteBtn {
+    color: #EF4444;
+}
+
+.bottom-task .deleteBtn:hover {
+    background: #f25f5f21;
+}
+
+.bottom-task .editBtn {
+    color: #257FE5;
+}
+
+.bottom-task .editBtn:hover {
+    background: #4e4ebb30;
+}
+
+.bottom-task input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }

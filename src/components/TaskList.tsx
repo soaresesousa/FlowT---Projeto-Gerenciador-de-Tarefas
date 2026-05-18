@@ -2,7 +2,6 @@ import React, { type SetStateAction } from 'react';
 
 import "../styles/TaskList.css"
 import type { ITask } from '../types';
-import { BsTrash, BsPencil } from 'react-icons/bs';
 import { isOverDueDate } from '../utils/isOverDueDate';
 
 interface Props {
@@ -41,12 +40,19 @@ const TaskList: React.FunctionComponent<Props> = ({taskList, deleteTask, setTask
             <p className="description">{task.description ? `${task.description}` : ''}</p>
           </div>
           <div className="bottom-task">  
-            <button onClick={() => deleteTask(task.id)} className='deleteBtn'><BsTrash /></button>
+            <div className="buttons">
+
+            <button onClick={() => deleteTask(task.id)} className='deleteBtn'>Excluir</button>
             <button className='editBtn' onClick={() => {
               setTaskToUpdate(task)
               toggleModalOpen()
-              }} ><BsPencil /></button>
-              <input onChange={() => handleStatus(task.id)} type="checkbox" name="" id="" />
+              }} >Editar</button>
+              <button className="checkbox">
+                Concluir
+              </button>
+              {/* <input onChange={() => handleStatus(task.id)  }
+              type="checkbox" name="" id="" /> */}
+            </div>
           </div>
         </div>
       ))}   
