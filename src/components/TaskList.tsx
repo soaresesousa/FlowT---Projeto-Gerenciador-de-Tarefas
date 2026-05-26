@@ -17,7 +17,7 @@ const TaskList: React.FunctionComponent<Props> = ({taskList, deleteTask, setTask
   if(taskList.length == 0) {
     return (
       <div className='taskList'>
-        <h2>Nenhuma tarefa cadastrada ainda!</h2>
+        <h2>Nenhuma tarefa Disponível</h2>
       </div>
     )};
 
@@ -47,11 +47,11 @@ const TaskList: React.FunctionComponent<Props> = ({taskList, deleteTask, setTask
               setTaskToUpdate(task)
               toggleModalOpen()
               }} >Editar</button>
-              <button className="checkbox">
-                Concluir
+              <button 
+              onClick={() => handleStatus(task.id)}
+              className="checkBtn">
+                {task.status == "DONE" ? 'Restaurar' : 'Concluir'}
               </button>
-              {/* <input onChange={() => handleStatus(task.id)  }
-              type="checkbox" name="" id="" /> */}
             </div>
           </div>
         </div>

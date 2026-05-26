@@ -7,6 +7,10 @@
     gap: 20px;
 }
 
+.taskList h2 {
+    color: #333333;
+}
+
 .task {
     position: relative;
     border-radius:15px;
@@ -121,8 +125,10 @@
     background: #4e4ebb30;
 }
 
-.bottom-task input {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
+.bottom-task .checkBtn {
+    color: #1ba34f;
+}
+
+.bottom-task .checkBtn:hover {
+    background: #38d18a4d;
 }
