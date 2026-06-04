@@ -3,12 +3,18 @@ aside {
     flex-direction: column;
     width: 20%;
     padding: 20px 1.5%;
+    background:#0C2847;
+}
+
+.header-title {
+    color: #F7FCFD;
 }
 
 .filters {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    margin-top: 30px;
 }
 
 .filters .filter-select {
